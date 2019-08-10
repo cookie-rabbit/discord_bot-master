@@ -1,19 +1,28 @@
 import requests
 import pinzhuang
+import codecs
 from bs4 import BeautifulSoup
 from urllib import parse
+
 
 main_url = 'https://www.xivmodarchive.com'
 
 
 def search(content):
-    z = 0
+    content = content.replace('!bot search ', '')
+    x = 0
     result_data = []
 
     content = content.replace('\n', '').replace(' ', '')
     content = parse.quote(content)
 
     url_hash = "{}/search/{}?page=1".format(main_url, content)
+    content = parse.unquote(content)
+    content = codecs.escape_decode(content)[0]
+    # content = content.decode('utf-8')
+    content = content.decode('string_escape')
+    print(content)
+
     response = requests.request("GET", url_hash)
     soup = BeautifulSoup(response.text, features="html.parser")
     # try:
@@ -27,8 +36,8 @@ def search(content):
         modder = j.text
         tex = {"name": name, "href": href, "modder": modder}
         result_data.append(tex)
-        z = z + 1
-        if z >= 5:
+        x = x + 1
+        if x >= 5:
             break
     result = {"search_content": content, "url": url_hash, "count": count, "data": result_data}
     # except:
@@ -39,4 +48,4 @@ def search(content):
     return embed
 
 
-search('sweater')
+search("!bot search Traveler's")

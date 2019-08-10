@@ -27,4 +27,4 @@ async def on_message(message):
         embed = search_mod.search(message.content.replace('!bot search ', ''))
         webhook.send(embed=embed)
         # webhook2.send(embed=embed)
-client.run('NDU5NTExMDI4OTM0Mzc3NDcy.XLk3vw.H8Knop1G34A4WLQARFYePq-4N0g')
+client.run('NDU5NTExMDI4OTM0Mzc3NDcy.XU1gug.mjWP4L2eg0cBCvqO6jYLS-bVTkk')
