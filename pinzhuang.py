@@ -4,11 +4,12 @@ from datetime import datetime
 
 def data_load(result):
     data = ""
-    if result['data'] != '':
+    if result['data'] != '' and result["count"] != 0:
         for i in result['data']:
             detail = "\n[{}]({})\n-{}\n".format(i['name'], i['href'], i['modder'])
             data = data + detail
-        data = "\n请注意NSFW已开启，查询结果共{}条，此处最大显示5条，其余请点击上方搜索结果\n".format(result["count"].split('Result')[0]) + data
+        data = "\n请注意BOT现在无法查询NSFW内容，请自行登录后查询，查询结果共{}条，此处最大显示5条，其余请点击上方搜索结果\n".format(
+            result["count"].split('Result')[0]) + data
 
         embed = discord.Embed(title="对{}的搜索结果：\n\n".format(result["search_content"]),
                               colour=discord.Colour(0x2d0095), url=result['url'],

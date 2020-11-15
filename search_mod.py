@@ -24,7 +24,7 @@ def search(content):
         names = soup.find_all(class_='card-title')
         href_collect = soup.find_all(class_='mod-card bg-dark text-light card my-2')[0:]
         modders = soup.find_all(class_='card-text mx-2')[0::2]
-        count = soup.find("code", class_='text-light').text.split("Results over")[0].replace(" ", "")
+        count = soup.find("code", class_='text-light').text.split("Results over")[0].replace(" ", "") if soup.find("code", class_='text-light') else 0
         for i, j, z in zip(names, modders, href_collect):
             href = "https://www.xivmodarchive.com" + z.contents[1].attrs['href']
             name = i.attrs['title'] if i.attrs.get('title') else i.next
@@ -44,4 +44,4 @@ def search(content):
     return embed
 
 
-search("!bot search Traveler's")
+search("!bot search fubuki")
